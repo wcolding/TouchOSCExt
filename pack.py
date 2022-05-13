@@ -25,7 +25,7 @@ while startIndex != -1:
         print(f'Reference found: \'{luaName}\'')
 
         try:
-            luaFile = io.open(f'Lua\{luaName}', 'r')
+            luaFile = io.open(f'Lua/{luaName}', 'r')
             luaScript = luaFile.read()
             luaFile.close()
         except:
@@ -40,7 +40,7 @@ while startIndex != -1:
 
 print(f'Total replacements: {replacements}')
 
-buildName = 'Build\\' + sys.argv[1][0:-3] + 'tosc'
+buildName = 'Build/' + sys.argv[1][0:-3] + 'tosc'
 
 byteData = data.encode('UTF-8')
 compressed = zlib.compress(byteData)

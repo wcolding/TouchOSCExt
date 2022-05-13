@@ -101,6 +101,7 @@ data = file.read()
 file.close()
 
 outputFile = sys.argv[1][0:-4] + 'xml'
+outputFile = outputFile.replace('Build/', '')
 outputFile = outputFile.replace('Build\\', '')
 
 try:
@@ -116,7 +117,7 @@ ET.indent(prettyXML)
 scriptObjs = GetRecursiveObjects(prettyXML)
 
 for obj in scriptObjs:
-    filename = f'Lua\{obj.name.text}{obj.name.modifier}.lua'
+    filename = f'Lua/{obj.name.text}{obj.name.modifier}.lua'
     file = io.open(filename, 'w')
     file.write(obj.script)
     file.close()
@@ -124,17 +125,3 @@ for obj in scriptObjs:
 file = io.open(outputFile, 'w')
 file.write(ET.tostring(prettyXML, encoding='unicode', method='xml'))
 file.close()
-
-# fileContents = ''
-
-# for obj in newObjs:
-#     fileContents += '---------------------------------------------------------------------\n' \
-#                     '-- This script was automatically exported from a TouchOSC XML file\n' \
-#                    f'-- Object name: {obj.name.text}{obj.name.modifier}\n' \
-#                    f'-- Type: {obj.type}\n' \
-#                    f'-- GUID: {obj.id}\n' \
-#                     '---------------------------------------------------------------------\n\n' \
-#                    f'{obj.script}\n\n'
-
-# file.write(fileContents)
-# file.close()
